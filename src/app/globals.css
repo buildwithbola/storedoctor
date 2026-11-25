@@ -1,0 +1,225 @@
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root,
+[data-theme="light"] {
+  --sd-bg: #F5F7F9;
+  --sd-surface: #FFFFFF;
+  --sd-surface-subtle: #EDF1F5;
+  --sd-ink: #132030;
+  --sd-ink-muted: #4A5B70;
+  --sd-border: #CBD2DA;
+  --sd-border-subtle: #E1E6EC;
+  --sd-emerald: #0FA968;
+  --sd-emerald-ink: #07643E;
+  --sd-emerald-soft: rgba(15, 169, 104, 0.12);
+  --sd-orange: #FF6B1A;
+  --sd-orange-ink: #A83E05;
+  --sd-orange-soft: rgba(255, 107, 26, 0.12);
+  --sd-amber: #D97706;
+  --sd-amber-soft: rgba(217, 119, 6, 0.12);
+  --sd-track: #DFE5EC;
+  --sd-inspector-bg: #132030;
+  --sd-inspector-surface: #1A2B40;
+  --sd-inspector-border: #283D56;
+  --sd-inspector-ink: #F5F7F9;
+  --sd-inspector-muted: #93A6BD;
+  --sd-shadow-card: 0 1px 2px rgba(19, 32, 48, 0.04), 0 12px 32px -12px rgba(19, 32, 48, 0.08);
+  --sd-shadow-dock: 0 4px 20px -4px rgba(19, 32, 48, 0.09), 0 1px 2px rgba(19, 32, 48, 0.05);
+  --sd-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --sd-font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="dark"] {
+  --sd-bg: #0B131E;
+  --sd-surface: #132030;
+  --sd-surface-subtle: #1A2B40;
+  --sd-ink: #F5F7F9;
+  --sd-ink-muted: #9BB0C7;
+  --sd-border: #253850;
+  --sd-border-subtle: #1D2E43;
+  --sd-emerald: #10B981;
+  --sd-emerald-ink: #34D399;
+  --sd-emerald-soft: rgba(16, 185, 129, 0.16);
+  --sd-orange: #FF7830;
+  --sd-orange-ink: #FF9B63;
+  --sd-orange-soft: rgba(255, 120, 48, 0.16);
+  --sd-amber: #F59E0B;
+  --sd-amber-soft: rgba(245, 158, 11, 0.16);
+  --sd-track: #243449;
+  --sd-inspector-bg: #08101A;
+  --sd-inspector-surface: #101D2C;
+  --sd-inspector-border: #22354D;
+  --sd-inspector-ink: #F5F7F9;
+  --sd-inspector-muted: #93A6BD;
+  --sd-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.28), 0 16px 36px -14px rgba(0, 0, 0, 0.48);
+  --sd-shadow-dock: 0 8px 28px -6px rgba(0, 0, 0, 0.52), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --sd-font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --sd-font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+    background-color: var(--sd-bg);
+    color: var(--sd-ink);
+    font-family: var(--sd-font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--sd-font-display);
+  }
+}
+
+.font-display {
+  font-family: var(--sd-font-display);
+}
+
+.font-mono-tabular {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sd-hero-mesh {
+  background-image:
+    radial-gradient(ellipse 75% 45% at 50% -6%, rgba(15, 169, 104, 0.11), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 88% 8%, rgba(255, 107, 26, 0.06), transparent 65%);
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] .sd-hero-mesh {
+  background-image:
+    radial-gradient(ellipse 75% 45% at 50% -6%, rgba(16, 185, 129, 0.14), transparent 70%),
+    radial-gradient(ellipse 55% 40% at 88% 8%, rgba(255, 120, 48, 0.08), transparent 65%);
+}
+
+.sd-glass-dock {
+  background-color: color-mix(in srgb, var(--sd-surface) 84%, transparent);
+  backdrop-filter: blur(20px) saturate(185%);
+  -webkit-backdrop-filter: blur(20px) saturate(185%);
+  border: 1px solid color-mix(in srgb, var(--sd-border) 82%, transparent);
+  box-shadow: var(--sd-shadow-dock);
+}
+
+.sd-card {
+  background-color: var(--sd-surface);
+  border: 1px solid var(--sd-border);
+  border-radius: 22px;
+  box-shadow: var(--sd-shadow-card);
+}
+
+.sd-card-hover {
+  transition-property: transform, box-shadow, border-color;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sd-card-hover:hover {
+  transform: translateY(-2px);
+}
+
+.sd-transition {
+  transition-property: transform, opacity, background-color, border-color, color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sd-marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+@keyframes sd-marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.sd-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: sd-marquee-scroll 34s linear infinite;
+}
+
+.sd-marquee-mask:hover .sd-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes sd-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.sd-reveal {
+  animation: sd-fade-up 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-transition,
+  .sd-card-hover,
+  .sd-reveal,
+  .sd-marquee-track,
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  html,
+  body,
+  [data-theme="dark"] {
+    --sd-bg: #FFFFFF !important;
+    --sd-surface: #FFFFFF !important;
+    --sd-surface-subtle: #F5F7F9 !important;
+    --sd-ink: #132030 !important;
+    --sd-ink-muted: #4A5B70 !important;
+    --sd-border: #CBD2DA !important;
+    --sd-emerald: #0FA968 !important;
+    --sd-orange: #FF6B1A !important;
+    background: #FFFFFF !important;
+    color: #132030 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .sd-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+}
